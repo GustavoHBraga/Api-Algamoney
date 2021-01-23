@@ -1,0 +1,34 @@
+{
+  "groups": [
+    {
+      "name": "algamoney",
+      "type": "com.example.algamoney.Config.Property.AlgamoneyapiProperty",
+      "sourceType": "com.example.algamoney.Config.Property.AlgamoneyapiProperty"
+    },
+    {
+      "name": "algamoney.origin-permitida",
+      "type": "com.example.algamoney.Config.Property.AlgamoneyapiProperty$OriginPermitida",
+      "sourceType": "com.example.algamoney.Config.Property.AlgamoneyapiProperty",
+      "sourceMethod": "public com.example.algamoney.Config.Property.AlgamoneyapiProperty.OriginPermitida getOriginPermitida() "
+    },
+    {
+      "name": "algamoney.seguranca",
+      "type": "com.example.algamoney.Config.Property.AlgamoneyapiProperty$Seguranca",
+      "sourceType": "com.example.algamoney.Config.Property.AlgamoneyapiProperty",
+      "sourceMethod": "public com.example.algamoney.Config.Property.AlgamoneyapiProperty.Seguranca getSeguranca() "
+    }
+  ],
+  "properties": [
+    {
+      "name": "algamoney.origin-permitida.origin-permitida",
+      "type": "java.lang.String",
+      "sourceType": "com.example.algamoney.Config.Property.AlgamoneyapiProperty$OriginPermitida"
+    },
+    {
+      "name": "algamoney.seguranca.enable-https",
+      "type": "java.lang.Boolean",
+      "sourceType": "com.example.algamoney.Config.Property.AlgamoneyapiProperty$Seguranca"
+    }
+  ],
+  "hints": []
+}
