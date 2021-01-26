@@ -10,4 +10,3 @@ Insert into categoria(nome) values('Netflix');
 Insert into categoria(nome) values('informatica');
 Insert into categoria(nome) values('transporte');
 Insert into categoria(nome) values('MCDonalds');
-Insert into categoria(nome) values('DisneyPlus');
