@@ -5,6 +5,7 @@ import java.util.Arrays;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Profile;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.oauth2.config.annotation.configurers.ClientDetailsServiceConfigurer;
@@ -19,6 +20,7 @@ import org.springframework.security.oauth2.provider.token.store.JwtTokenStore;
 
 import com.example.algamoney.Config.token.CustomTokenEnhancer;
 
+@Profile("oauth-security")
 @Configuration
 @EnableAuthorizationServer//habilitar a autorização do servidor.
 public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdapter {
@@ -49,12 +51,12 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
 	
 	@Override
 	public void configure(AuthorizationServerEndpointsConfigurer endpoints) throws Exception {
-		TokenEnhancerChain tokenEnhancerChain = new TokenEnhancerChain();
+		TokenEnhancerChain tokenEnhancerChain = new TokenEnhancerChain();//Token melhorado / editado
 		tokenEnhancerChain.setTokenEnhancers(Arrays.asList(tokenEnhancer(), accesTokenConverter()));
 		
 		endpoints
 			.tokenStore(tokenStore())
-			.tokenEnhancer(tokenEnhancerChain)
+			.tokenEnhancer(tokenEnhancerChain)//passo ele com a informação adicional, e acessToken
 			.reuseRefreshTokens(false)
 			.userDetailsService(userDetailsService)
 			.authenticationManager(authenticationManager);
@@ -75,7 +77,7 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
 	
 	@Bean
 	public TokenEnhancer tokenEnhancer() {
-	    return new CustomTokenEnhancer();
+	    return new CustomTokenEnhancer();//retorna um token melhorado e customizado com o nome do usuario
 	}
 	
 	

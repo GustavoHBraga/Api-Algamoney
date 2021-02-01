@@ -1,9 +1,8 @@
 package com.example.algamoney.service;
 
-import java.util.Optional;
-
 import javax.validation.Valid;
 
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -24,13 +23,47 @@ public class LancamentoServices {
 	
 	
 	public Lancamento salvar(@Valid Lancamento lancamento) {
-		/*Optional é para não precisar do orElse do FindById*/
-		Optional<Pessoa> pessoa = pessoaRepository.findById(lancamento.getPessoa().getCodigo());
 		
-		if (pessoa == null || pessoa.get().isInativo()) {
-			 throw new PessoaInexistenteOuInativaException();
-		 }
-		
+		validarPessoa(lancamento);
 		return lancamentoRepository.save(lancamento);
 	}
+	
+	public Lancamento atualizar (Long codigo, Lancamento lancamento) {
+		Lancamento lancamentoSalvo = buscarLancamentoExistente(codigo);
+		
+		/*se caso for atualizar pessoa tenho que validar*/
+		if(!lancamento.getPessoa().equals(lancamentoSalvo.getPessoa())) {
+			validarPessoa(lancamentoSalvo);
+		}
+		
+		/*copio as variaveis de lancamento(campos que eu não atualizei) no lancamentoSalvo(atualizado) ignorando o codigo que é o id*/
+		BeanUtils.copyProperties(lancamento, lancamentoSalvo, "codigo");
+		return lancamentoRepository.save(lancamentoSalvo);
+	}
+	
+	public void validarPessoa(Lancamento lancamento) {
+		
+		Pessoa pessoa = null;
+		
+		if(lancamento.getPessoa() != null) {
+			 pessoa = pessoaRepository.findById(lancamento.getPessoa().getCodigo()).orElse(null);
+		}
+		
+		if(pessoa == null || pessoa.isInativo()) {
+			throw new PessoaInexistenteOuInativaException();
+		}
+	}
+	
+	public Lancamento buscarLancamentoExistente(Long codigo) {
+		
+		Lancamento lancamentoSalvo = lancamentoRepository.findById(codigo).orElse(null);
+		
+		if(lancamentoSalvo == null) {
+			throw new IllegalArgumentException();	
+		}
+		
+		return lancamentoSalvo;
+	}
+	
+	
 }

@@ -14,6 +14,8 @@ import org.springframework.context.ApplicationEvent;
 import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.context.ApplicationListener;
 import org.springframework.dao.EmptyResultDataAccessException;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -33,6 +35,7 @@ import com.example.algamoney.model.Categoria;
 import com.example.algamoney.model.Endereco;
 import com.example.algamoney.model.Pessoa;
 import com.example.algamoney.repository.PessoaRepository;
+import com.example.algamoney.repository.filter.PessoaFilter;
 import com.example.algamoney.service.PessoaServices;
 
 @RestController
@@ -50,8 +53,8 @@ public class PessoasResource {
 	
 	@GetMapping
 	@PreAuthorize("hasAuthority('ROLE_PESQUISAR_PESSOA') and #oauth2.hasScope('read')")
-	public List<Pessoa> ListarTodos(){
-		return pessoaRepository.findAll();
+	public Page<Pessoa> pesquisar(PessoaFilter pessoaFilter, Pageable pageable ){
+		return pessoaRepository.filtrar(pessoaFilter, pageable);
 	}
 	
 	@PostMapping
