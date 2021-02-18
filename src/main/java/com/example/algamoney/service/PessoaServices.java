@@ -2,12 +2,15 @@ package com.example.algamoney.service;
 
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.configurationprocessor.json.JSONException;
+import org.springframework.boot.configurationprocessor.json.JSONObject;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
 
 import com.example.algamoney.model.Endereco;
 import com.example.algamoney.model.Pessoa;
 import com.example.algamoney.repository.PessoaRepository;
+import com.example.algamoney.service.util.CepAutomate;
 
 @Service
 public class PessoaServices {
@@ -36,13 +39,11 @@ public class PessoaServices {
 		pessoaSalva.setEndereço(endereco);
 		return pessoaRepository.save(pessoaSalva);
 	}
-	
-	
+
 	public Pessoa buscarPeloCodigo(long codigo) {
 		Pessoa pessoaSalva = this.pessoaRepository.findById(codigo)
 			      .orElseThrow(() -> new EmptyResultDataAccessException(1));
 		
 		return pessoaSalva;
 	}
-
 }

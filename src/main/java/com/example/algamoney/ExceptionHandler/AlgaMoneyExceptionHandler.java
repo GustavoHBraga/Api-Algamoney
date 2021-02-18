@@ -41,7 +41,7 @@ public class AlgaMoneyExceptionHandler extends ResponseEntityExceptionHandler {
 	}
 	
 	
-	/* Validações de Campos NotNUll */	
+	/* Validações de Campos NotNull */	
 	@Override
 	protected ResponseEntity<Object> handleMethodArgumentNotValid(MethodArgumentNotValidException ex,
 			HttpHeaders headers, HttpStatus status, WebRequest request) {

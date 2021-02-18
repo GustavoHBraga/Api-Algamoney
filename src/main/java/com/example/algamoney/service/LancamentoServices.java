@@ -36,7 +36,8 @@ public class LancamentoServices {
 			validarPessoa(lancamentoSalvo);
 		}
 		
-		/*copio as variaveis de lancamento(campos que eu não atualizei) no lancamentoSalvo(atualizado) ignorando o codigo que é o id*/
+		/* Lancamento onde as propriedades vão ser modificadas e LancamentoSalvo onde cujas propriedades
+		 * são recuperadas ignorando o codigo que é o id */
 		BeanUtils.copyProperties(lancamento, lancamentoSalvo, "codigo");
 		return lancamentoRepository.save(lancamentoSalvo);
 	}
@@ -64,6 +65,5 @@ public class LancamentoServices {
 		
 		return lancamentoSalvo;
 	}
-	
-	
+
 }

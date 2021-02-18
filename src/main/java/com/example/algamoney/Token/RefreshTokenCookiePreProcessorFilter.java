@@ -56,6 +56,7 @@ public class RefreshTokenCookiePreProcessorFilter implements Filter{
 			super(request);
 			this.refreshToken = refreshToken;
 		}
+		
 		@Override
 		public Map<String, String[]> getParameterMap() {
 			ParameterMap<String, String[]> map = new ParameterMap<>(getRequest().getParameterMap());

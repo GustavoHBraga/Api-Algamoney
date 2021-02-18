@@ -1,19 +1,12 @@
 package com.example.algamoney.resource;
 
 
-import java.net.URI;
-import java.util.List;
-import java.util.Optional;
-
 import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 
-import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.ApplicationEvent;
 import org.springframework.context.ApplicationEventPublisher;
-import org.springframework.context.ApplicationListener;
-import org.springframework.dao.EmptyResultDataAccessException;
+import org.springframework.context.MessageSource;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
@@ -28,10 +21,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.example.algamoney.Event.RecursoCriadoEvent;
-import com.example.algamoney.model.Categoria;
 import com.example.algamoney.model.Endereco;
 import com.example.algamoney.model.Pessoa;
 import com.example.algamoney.repository.PessoaRepository;
@@ -50,6 +41,9 @@ public class PessoasResource {
 	
 	@Autowired	
 	private ApplicationEventPublisher publisher;
+	
+	@Autowired
+	private MessageSource messageSource;
 	
 	@GetMapping
 	@PreAuthorize("hasAuthority('ROLE_PESQUISAR_PESSOA') and #oauth2.hasScope('read')")
@@ -107,4 +101,5 @@ public class PessoasResource {
 		Pessoa pessoaSalva = pessoasServices.atualizarPropriedadeEndereco(codigo, endereco);
 		return ResponseEntity.ok(pessoaSalva);
 	}
+
 }

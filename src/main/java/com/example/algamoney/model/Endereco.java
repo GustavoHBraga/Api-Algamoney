@@ -1,7 +1,6 @@
 package com.example.algamoney.model;
 
 import javax.persistence.Embeddable;
-import javax.validation.constraints.Size;
 
 @Embeddable
 public class Endereco {
@@ -14,10 +13,10 @@ public class Endereco {
 	//@Size(min=4 , max = 15)
 	private String complemento;
 	
-	//@Size(min=4 , max = 15)
+	
 	private String bairro;
 	
-	//@Size(min=9 , max = 9)
+	
 	private String cep;
 	
 	//@Size(min=4 , max = 15)
@@ -82,5 +81,7 @@ public class Endereco {
 	public void setEstado(String estado) {
 		this.estado = estado;
 	}
+	
+	
 	
 }

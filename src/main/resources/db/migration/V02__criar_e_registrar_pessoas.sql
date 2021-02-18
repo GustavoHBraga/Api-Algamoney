@@ -11,7 +11,7 @@ CREATE TABLE IF NOT EXISTS pessoa  (
     estado 		VARCHAR(50)
     )ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-/*
+
 Insert into pessoa(nome,ativo,logradouro,numero,complemento,bairro,cep,cidade,estado) 
 	values('Gustavo Braga',true,'Rua Rio Paranapanema','147','Cond Serigueiras','Iapi','06233-000','Osasco','São Paulo');
 
@@ -32,4 +32,4 @@ Insert into pessoa(nome,ativo,logradouro,numero,complemento,bairro,cep,cidade,es
 	
 Insert into pessoa(nome,ativo,logradouro,numero,complemento,bairro,cep,cidade,estado) 
 	values('Beatriz Sato ',true,'Rua Liberdade','85','exemplo 2','Liberdade','58583-000','São Paulo','São Paulo');
-*/	
+	
