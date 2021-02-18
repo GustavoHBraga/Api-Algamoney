@@ -15,8 +15,7 @@ public class Endereco {
 	
 	
 	private String bairro;
-	
-	
+
 	private String cep;
 	
 	//@Size(min=4 , max = 15)

@@ -1,11 +1,7 @@
 package com.example.algamoney.Event.Listener;
 
 
-import java.io.IOException;
-import java.net.MalformedURLException;
 import java.net.URI;
-import java.net.URL;
-import java.net.http.HttpResponse;
 
 import javax.servlet.http.HttpServletResponse;
 
